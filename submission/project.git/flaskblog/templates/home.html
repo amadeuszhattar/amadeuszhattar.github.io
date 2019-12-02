@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+	{% for post in posts %}
+		<article class="media content-section">
+			<img class="rounded-circle article-img auto-margins" src="{{ url_for('static', filename='pictures/' + post.author.image_file) }}">
+		  <div class="media-body">
+		    <div class="article-metadata">
+		      <a class="mr-2 author">{{ post.author.username }}</a> <!-- displaying just author's username -->
+		      <small class="text-muted">{{ post.date_posted.strftime('%d-%m-%Y') }}</small> <!-- showing data in a D/M/Y format -->
+		    </div>
+		    <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>  <!-- getting url for specific posts -->
+		    <p class="article-content">{{ post.content }}</p>
+		  </div>
+		</article>
+	{% endfor %}
+{% endblock %}
+
+<style>
+.auto-margins {
+margin:auto;
+}
+</style>
